@@ -1,38 +1,82 @@
-.App {
+body {
+  background-color: #a4f294;
+  font-family: Arial, sans-serif;
+}
+
+.header-component h1 {
+  background: white;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 3em;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-component h2 {
+  background: #a4f294;
+  text-align: center;
+  text-transform: lowercase;
+  font-style: italic;
+  font-size: 2em;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.post-list {
+  padding: 0 10px;
+  margin: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.post-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 20px 0;
+  list-style: none;
+  border: none;
+}
+
+.post-component p {
+  margin: 0;
+  padding: 4px 10px;
+  background: #2a5e20;
   color: white;
+  font-size: 1.3em;
 }
 
-.App-link {
-  color: #61dafb;
+.post-component img {
+  width: 100%;
+  display: block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post-component button {
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.selected-item {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.selected-item p {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5em;
+}
+
+.post-component .post-name {
+  font-weight: bold;
+  font-size: 2em;
 }
