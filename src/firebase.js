@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage'
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,4 +19,23 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
+const postRef = collection(db, 'posts');
+
+export async function getPostData(){
+  return getDocs(postRef)
+  .then((snapshot) => {
+    let posts = [];
+    let i = 1;
+    snapshot.docs.forEach((doc) => {
+      posts.push({ image: doc.data().image, name: doc.data().title, id: i });
+      i++;
+    })
+
+    var promises = posts.map(function(post){
+      return post;
+    });
+
+    return Promise.all(promises);
+  });
+}
