@@ -22,16 +22,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const postRef = collection(db, 'posts');
 const storage = getStorage(app);
-const storageRef = ref(storage, 'images/');
 
 export async function getPostData(){
   return getDocs(postRef)
   .then((snapshot) => {
     let posts = [];
-    let i = 1;
     snapshot.docs.forEach((doc) => {
-      posts.push({ image: doc.data().image, name: doc.data().title, id: i });
-      i++;
+      posts.push({ image: doc.data().image, name: doc.data().title, id: doc.id });
     })
 
     var promises = posts.map(function(post){
@@ -44,19 +41,16 @@ export async function getPostData(){
 
 export async function sendPostData(title, username, imageUpload){
   const imageName = imageUpload.name;
-  console.log(imageName);
   const imageRef = ref(storage, `images/${imageName}`);
-  uploadBytes(imageRef, imageUpload)
+  uploadBytes(imageRef, imageUpload) //Upload image to firebase storage
   .then(() => {
-    getDownloadURL(imageRef)
+    getDownloadURL(imageRef) //Get URL of uploaded image
     .then((url) => {
-      addDoc(collection(db, "posts"), {
+      addDoc(collection(db, "posts"), { //Store post data in firebase collection
         title: title,
-        author: username,
+        username: username,
         image: url
       });
     })
   });
-
-  
 }
