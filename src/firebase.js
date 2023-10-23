@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getDownloadURL, getStorage, ref } from 'firebase/storage'
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +21,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const postRef = collection(db, 'posts');
+const storage = getStorage(app);
+const storageRef = ref(storage, 'images/');
 
 export async function getPostData(){
   return getDocs(postRef)
@@ -38,4 +40,23 @@ export async function getPostData(){
 
     return Promise.all(promises);
   });
+}
+
+export async function sendPostData(title, username, imageUpload){
+  const imageName = imageUpload.name;
+  console.log(imageName);
+  const imageRef = ref(storage, `images/${imageName}`);
+  uploadBytes(imageRef, imageUpload)
+  .then(() => {
+    getDownloadURL(imageRef)
+    .then((url) => {
+      addDoc(collection(db, "posts"), {
+        title: title,
+        author: username,
+        image: url
+      });
+    })
+  });
+
+  
 }
