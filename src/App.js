@@ -3,27 +3,30 @@ import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import SelectedItem from "./components/SelectedItem";
-import fruityPebblesPickle from "./food/food1.png";
-import uniMeal from "./food/food2.png";
-import cheeseJalapenoSamosas from "./food/food3.png";
-import friedSpamSandwiches from "./food/food4.png";
-import deviledEggs from "./food/food5.png";
+import { getPostData, sendPostData } from './firebase';
 
-const foodArray = [
-  { image: fruityPebblesPickle, name: "Fruity Pebbles Pickle", id: 1 },
-  { image: uniMeal, name: "University Meal (With Cheese!)", id: 2 },
-  { image: cheeseJalapenoSamosas, name: "Cheese Jalapeno Samosas", id: 3 },
-  { image: friedSpamSandwiches, name: "Fried Spam Sandwiches", id: 4 },
-  { image: deviledEggs, name: "Deviled Eggs?", id: 5 },
-];
+const foodArray = await getPostData();
 
 function App() {
   const [selectedPostName, setSelectedPostName] = useState("Fruity Pebbles Pickle");
   const selectedPost = foodArray.find(
     (otter) => otter.name === selectedPostName
   );
+
+  //For testing post upload
+  const [imageUpload, setImageUpload] = useState(null);
+  const [titleUpload, setTitleUpload] = useState('');
+  const [userUpload, setUserUpload] = useState('');
+
   return (
+    
     <div>
+
+      <input type='file' onChange={(event) => {setImageUpload(event.target.files[0])}}/>
+      <input onChange={(event) => {setTitleUpload(event.target.value)}}/>
+      <input onChange={(event) => {setUserUpload(event.target.value)}}/>
+      <button onClick={() => sendPostData(titleUpload, userUpload, imageUpload)}>Upload Post</button>
+
       <Header />
       <div className="app-content">
         <ul className="post-list">
