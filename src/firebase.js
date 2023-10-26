@@ -27,9 +27,12 @@ export async function getPostData(){
   return getDocs(postRef)
   .then((snapshot) => {
     let posts = [];
+
+    var i = 1;
     snapshot.docs.forEach((doc) => {
-      posts.push({ image: doc.data().image, name: doc.data().title, id: doc.id });
-    })
+      posts.push({ image: doc.data().image, name: doc.data().title, id: doc.id, key: i });
+      i++;
+    });
 
     var promises = posts.map(function(post){
       return post;
@@ -52,5 +55,30 @@ export async function sendPostData(title, username, imageUpload){
         image: url
       });
     })
+  });
+}
+
+export async function getCommentData(postId){
+  const commentRef = collection(db, 'posts/' + postId + '/comments');
+  return getDocs(commentRef)
+  .then((snapshot) => {
+    let comments = [];
+
+    snapshot.docs.forEach((doc) => {
+      comments.push({ comment: doc.data().comment, user: doc.data().user });
+    });
+
+    var promises = comments.map(function(comment){
+      return comment;
+    });
+
+    return Promise.all(promises);
+  });
+}
+
+export async function sendCommentData(postId, user, comment){
+  addDoc(collection(db, 'posts/' + postId + '/comments'), {
+    user: user,
+    comment: comment
   });
 }

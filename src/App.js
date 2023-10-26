@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import SelectedItem from "./components/SelectedItem";
-import { getPostData, sendPostData } from './firebase';
+import { getPostData, sendPostData, getCommentData, sendCommentData } from './firebase';
 
 const foodArray = await getPostData();
 
@@ -32,7 +32,7 @@ function App() {
         <ul className="post-list">
           {foodArray.map((post) => (
             <Post
-              key={post.id}
+              key={post.key}
               image={post.image}
               name={post.name}
               setSelectedPostName={setSelectedPostName}
