@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,6 +23,31 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const postRef = collection(db, 'posts');
 const storage = getStorage(app);
+const auth = getAuth(app);
+const googleAuthProvider = new GoogleAuthProvider();
+
+export async function signInWithGoogle() {
+  try {
+    const result = await signInWithPopup(auth, googleAuthProvider);
+    const user = result.user;
+    return user;
+  } catch (error) {
+    console.error("Google sign-in error:", error);
+    return null;
+  }
+}
+
+signInWithGoogle()
+.then((user) => {
+  if (user) {
+    console.log("Signed in user:", user);
+  } 
+
+  else {
+    console.log("No such user");
+  }
+});
+
 
 export async function getPostData(){
   return getDocs(postRef)
