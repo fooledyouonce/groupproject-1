@@ -2,44 +2,70 @@ import {useState} from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
+import FoodPost from "./components/FoodPost";
 import SelectedItem from "./components/SelectedItem";
-import { getPostData, sendPostData, getCommentData, sendCommentData } from './firebase';
+import fruityPebblesPickle from "./food/food1.png";
+import uniMeal from "./food/food2.png";
+import cheeseJalapenoSamosas from "./food/food3.png";
+import friedSpamSandwiches from "./food/food4.png";
+import deviledEggs from "./food/food5.png";
 
-const foodArray = await getPostData();
+const foodArray = [
+  { image: fruityPebblesPickle, name: "Fruity Pebbles Pickle", id: 1 },
+  { image: uniMeal, name: "University Meal (With Cheese!)", id: 2 },
+  { image: cheeseJalapenoSamosas, name: "Cheese Jalapeno Samosas", id: 3 },
+  { image: friedSpamSandwiches, name: "Fried Spam Sandwiches", id: 4 },
+  { image: deviledEggs, name: "Deviled Eggs?", id: 5 },
+];
+
+const modalOpenBtns = document.querySelectorAll(".modal-open");
+const modalCloseBtns = document.querySelectorAll(".modal-close");
+const body = document.querySelector("body");
+
+modalOpenBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let modal = btn.getAttribute("data-modal");
+        document.getElementById(modal).style.display = "block";
+        body.classList.add("prevent-background-scroll");
+    });
+});
+
+modalCloseBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let modal = (btn.closest(".modal").style.display = "none");
+        body.classList.remove("prevent-background-scroll");
+    });
+});
+
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) {
+        e.target.style.display = "none";
+        body.classList.remove("prevent-background-scroll");
+    }
+});
 
 function App() {
   const [selectedPostName, setSelectedPostName] = useState("Fruity Pebbles Pickle");
   const selectedPost = foodArray.find(
-    (otter) => otter.name === selectedPostName
+    (food) => food.name === selectedPostName
   );
-
-  //For testing post upload
-  const [imageUpload, setImageUpload] = useState(null);
-  const [titleUpload, setTitleUpload] = useState('');
-  const [userUpload, setUserUpload] = useState('');
-
   return (
-    
     <div>
-
-      <input type='file' onChange={(event) => {setImageUpload(event.target.files[0])}}/>
-      <input onChange={(event) => {setTitleUpload(event.target.value)}}/>
-      <input onChange={(event) => {setUserUpload(event.target.value)}}/>
-      <button onClick={() => sendPostData(titleUpload, userUpload, imageUpload)}>Upload Post</button>
-
       <Header />
       <div className="app-content">
         <ul className="post-list">
           {foodArray.map((post) => (
-            <Post
-              key={post.key}
+            <FoodPost
+              key={post.id}
               image={post.image}
               name={post.name}
-              setSelectedPostName={setSelectedPostName}
             />
           ))}
         </ul>
-        <SelectedItem i image={selectedPost.image} name={selectedPost.name} />
+        <Post 
+          image={uniMeal}
+          name="Uni Meal"
+        />
       </div>
     </div>
   );
