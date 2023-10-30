@@ -1,9 +1,24 @@
-# Getting Started with Create React App
+# Getting Started with FoodFight
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Before running the application, please run `npm install` to install the necessary dependencies.
+## Please Read the Following Directions Before Running the Application
 
+- [ ] Clone github repo onto your computer using `git clone [insert url here]` or the clone functionality built into VS Code.
+- [ ] Run `npm install` to install the necessary dependencies.
+- [ ] Use a **private/incognito** browser as your active browser window to view application (to see authentication functionality).
+- [ ] Ensure you're in the project directory and run `npm start`.
+
+## Trello Board and Acknowledgements
+[Trello Board](https://trello.com/b/c2We4OaQ/349-group-project)
+
+- Emily Crowl
+- Chanel McGee
+- Trenton Coggeshall
+- Chelsea Ogbedeagu
+- Brian Baik
+
+# Create React App Generated Guide
 ## Available Scripts
 
 In the project directory, you can run:
