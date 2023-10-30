@@ -82,6 +82,7 @@ export async function sendPostData(title, username, imageUpload){
       });
     })
   });
+  
 }
 
 export async function getCommentData(postId){
