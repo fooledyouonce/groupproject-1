@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
@@ -9,9 +9,20 @@ const foodArray = await getPostData();
 
 function App() {
   const [selectedPostName, setSelectedPostName] = useState("Fruity Pebbles Pickle");
+  const [selectedComments, setSelectedComments] = useState([]);
   const selectedPost = foodArray.find(
     (otter) => otter.name === selectedPostName
   );
+
+  useEffect(() => {
+    async function test(){
+      let comments = await getCommentData(selectedPost.id);
+      setSelectedComments(comments);
+    }
+
+    test();
+    
+  }, [selectedPostName]);
 
   //For testing post upload
   const [imageUpload, setImageUpload] = useState(null);
@@ -39,7 +50,7 @@ function App() {
             />
           ))}
         </ul>
-        <SelectedItem i image={selectedPost.image} name={selectedPost.name} />
+        <SelectedItem i image={selectedPost.image} name={selectedPost.name} comments={selectedComments} id={selectedPost.id} />
       </div>
     </div>
   );
