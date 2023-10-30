@@ -15,7 +15,7 @@ function SelectedItem({ image, name, comments, id }) {
             <p style={{color: 'white'}}> {post.user}: {post.comment}</p>
           ))}
         </ul>
-        <input onChange={(event) => {setCommentUpload(event.target.value)}}/>
+        <input className="comment-section" placeholder="Comments" onChange={(event) => {setCommentUpload(event.target.value)}}/>
         <button onClick={() => sendCommentData(id, 'user', commentUpload)}>Post Comment</button>
         </div>
     )
