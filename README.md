@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Clone github repo onto your computer using `git clone [insert url here]` or the clone functionality built into VS Code.
 - [ ] Run `npm install` to install the necessary dependencies.
 - [ ] Use a **private/incognito** browser as your active browser window to view application (to see authentication functionality).
+- [ ] Ensure pop-ups are enabled!
 - [ ] Ensure you're in the project directory and run `npm start`.
 
 ## Trello Board and Acknowledgements
