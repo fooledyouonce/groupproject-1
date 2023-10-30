@@ -10,8 +10,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Ensure pop-ups are enabled!
 - [ ] Ensure you're in the project directory and run `npm start`.
 
-## Trello Board and Acknowledgements
+## Trello Board, Walkthrough, and Acknowledgements
 [Trello Board](https://trello.com/b/c2We4OaQ/349-group-project)
+
+[Walkthrough](https://www.youtube.com/watch?v=yrh0cJmDyHU)
 
 - Emily Crowl
 - Chanel McGee
