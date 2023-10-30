@@ -9,14 +9,14 @@ function SelectedItem({ image, name, comments, id }) {
         <div className='selected-item'>
             <p>{name}</p>
             <img src={image} alt={name} />
-            <h1 style={{color: 'white'}}>Comments:</h1>
+            <h1 style={{color: 'white'}}>Let the Fight Commence:</h1>
             <ul className="post-list">
              {comments.map((post) => (
             <p style={{color: 'white'}}> {post.user}: {post.comment}</p>
           ))}
+          <input className="comment-section" placeholder="Write your thoughts here..." onChange={(event) => {setCommentUpload(event.target.value)}}/>
+          <button onClick={() => sendCommentData(id, 'user', commentUpload)}>Post Rating</button>
         </ul>
-        <input className="comment-section" placeholder="Comments" onChange={(event) => {setCommentUpload(event.target.value)}}/>
-        <button onClick={() => sendCommentData(id, 'user', commentUpload)}>Post Comment</button>
         </div>
     )
 }

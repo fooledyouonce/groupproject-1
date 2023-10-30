@@ -1,6 +1,7 @@
 body {
   background-color: black;
   --lights: rgb(91, 235, 115);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* Font for the header */
@@ -12,14 +13,14 @@ body {
 /* Header itself */
 .header-component h1 {
   text-align: center;
-  font-size: 3em;
+  font-size: 10em;
   font-family: header-font;
   color: white;
-  text-shadow: 0 0 .5vh var(--lights), 
-               0 0 .5vh var(--lights),
-               0 0 .5vh var(--lights),
-               0 0 .5vh var(--lights),
-               0 0  1vh var(--lights);
+  text-shadow: 0 0 .5vh var(--lights),
+    0 0 .5vh var(--lights),
+    0 0 .5vh var(--lights),
+    0 0 .5vh var(--lights),
+    0 0 1vh var(--lights);
   animation: flicker 7s;
   filter: brightness(1);
 }
@@ -28,46 +29,50 @@ body {
 @keyframes flicker {
   9% {
     text-shadow: 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0  1vh var(--lights);
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 1vh var(--lights);
     filter: brightness(1)
   }
+
   10% {
     text-shadow: none;
     filter: brightness(.4);
   }
+
   11% {
     text-shadow: 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0  1vh var(--lights);
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 1vh var(--lights);
     filter: brightness(1);
   }
+
   12% {
     text-shadow: none;
     filter: brightness(.4);
   }
+
   13% {
     text-shadow: 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0  1vh var(--lights);
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 1vh var(--lights);
     filter: brightness(1);
   }
+
   66% {
     text-shadow: 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0 .5vh var(--lights),
-                 0 0  1vh var(--lights);
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 .5vh var(--lights),
+      0 0 1vh var(--lights);
     filter: brightness(1);
   }
 }
-
 
 .header-component h2 {
   background: #a4f294;
@@ -102,6 +107,7 @@ body {
   background: #2a5e20;
   color: white;
   font-size: 1.3em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .post-component img {
@@ -142,9 +148,25 @@ body {
 .comment-section {
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
+  width: 70%;
+  height: 2%;
+  border-radius: 50px;
   object-position: 50% 50%;
   z-index: 2;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.directions{
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+}
+
+.upload {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  color: white;
 }
