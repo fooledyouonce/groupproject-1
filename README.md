@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Please Read the Following Directions Before Running the Application
-**Visual Studio is Recommended**
+**Visual Studio is Recommended!!**
 - [ ] Clone github repo onto your computer using `git clone [insert url here]` or the clone functionality built into VS Code.
 - [ ] Run `npm install` to install the necessary dependencies.
 - [ ] Use a **private/incognito** browser as your active browser window to view application (to see authentication functionality).
